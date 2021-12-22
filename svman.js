@@ -31,8 +31,7 @@ export async function main(ns)
 
 		for (const name in subs)
 		{
-			const isAsync = subs[name].constructor.name == "AsyncFunction";
-			builder.addLine(`  --> ${name} ${isAsync ? await subs[name](null, null, true) : subs[name](null, null, true)}`);
+			builder.addLine(`  --> ${name}`);
 		}
 
 		ns.tprint(builder.build());
