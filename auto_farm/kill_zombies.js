@@ -1,6 +1,6 @@
 /** @param {NS} ns **/
 export async function main(ns) {
-    const servers = ns.scan();
+	const servers = ns.scan();
 	const script = ns.getScriptName();
 	const me = ns.getHostname();
 

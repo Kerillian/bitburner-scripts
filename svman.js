@@ -26,38 +26,12 @@ export async function main(ns)
 	}
 	else
 	{
-		const builder = new MessageBuilder();
-		builder.addLine("Invalid sub command, possible commands are:");
+		ns.tprintf("Invalid sub command, possible commands are:");
 
 		for (const name in subs)
 		{
-			builder.addLine(`  --> ${name}`);
+			ns.tprintf(`  --> ${name}`);
 		}
-
-		ns.tprint(builder.build());
-	}
-}
-
-class MessageBuilder
-{
-	constructor()
-	{
-		this.lines = ["\n"];
-	}
-
-	add(str)
-	{
-		this.lines.push(this.lines.pop() + str);
-	}
-
-	addLine(str)
-	{
-		this.lines.push(str);
-	}
-
-	build()
-	{
-		return this.lines.join("\n") + "\n\n";
 	}
 }
 
@@ -69,7 +43,6 @@ class MessageBuilder
 function listServers(ns, args)
 {
 	const servers = ns.getPurchasedServers();
-	const builder = new MessageBuilder();
 
 	for (let name of servers)
 	{
@@ -78,12 +51,10 @@ function listServers(ns, args)
 		const percentage = (100 * usedRam) / maxRam;
 		const data = ns.getServer(name);
 
-		builder.addLine(`Name: ${name} (${data.ip})`);
-		builder.addLine(`  --> Ram: ${maxRam}gb`);
-		builder.addLine(`  --> Used: ${usedRam}gb (%${percentage.toFixed(2)})`);
+		ns.tprintf(`Name: ${name} (${data.ip})`);
+		ns.tprintf(`  --> Ram: ${maxRam}gb`);
+		ns.tprintf(`  --> Used: ${usedRam}gb (%${percentage.toFixed(2)})`);
 	}
-
-	ns.tprint(builder.build());
 }
 
 /**
@@ -93,17 +64,13 @@ function listServers(ns, args)
  **/
 function listPrices(ns, args)
 {
-	const builder = new MessageBuilder();
-
 	for (let i = 0; i < 20; i++)
 	{
 		const gb = Math.pow(2, i + 1);
 		const price = ns.getPurchasedServerCost(gb);
 
-		builder.addLine(`${ns.nFormat(gb * 1073741824, "0b").padEnd(5)} -> ${ns.nFormat(price, "$0.00a")}`);
+		ns.tprintf(`${ns.nFormat(gb * 1073741824, "0b").padEnd(5)} -> ${ns.nFormat(price, "$0.00a")}`);
 	}
-
-	ns.tprint(builder.build());
 }
 
 /**
@@ -127,7 +94,7 @@ async function buyServer(ns, args)
 	if (okay)
 	{
 		const host = ns.purchaseServer(name, gigs);
-		ns.tprint(`Purchased server: ${host}`);
+		ns.tprintf(`Purchased server: ${host}`);
 	}
 }
 
@@ -142,18 +109,18 @@ async function rmServer(ns, args)
 
 	if (!name)
 	{
-		ns.tprint("Usage: svman.js delete [name]");
+		ns.tprintf("Usage: svman.js delete [name]");
 	}
 
 	if (!ns.serverExists(name))
 	{
-		ns.tprint(name + " doesn't exist");
+		ns.tprintf(name + " doesn't exist");
 	}
 
 	const okay = await ns.prompt(`Are you sure you want to delete "${name}"?`);
 
 	if (okay)
 	{
-		ns.tprint(ns.deleteServer(name) ? `Deleted "${name}".` : `Something went wrong when trying to delete "${name}".`);
+		ns.tprintf(ns.deleteServer(name) ? `Deleted "${name}".` : `Something went wrong when trying to delete "${name}".`);
 	}
 }
