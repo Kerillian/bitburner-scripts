@@ -26,12 +26,7 @@ export async function main(ns)
 	}
 	else
 	{
-		ns.tprintf("Invalid sub command, possible commands are:");
-
-		for (const name in subs)
-		{
-			ns.tprintf(`  --> ${name}`);
-		}
+		ns.tprintf(`Invalid sub command, possible commands are:\n${Object.keys(subs).map(x => `  --> ${x}`).join("\n")}`);
 	}
 }
 
