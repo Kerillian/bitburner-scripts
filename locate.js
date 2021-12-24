@@ -33,7 +33,7 @@ function traverse(ns, origin, target, cur_path=[])
 
 	if (nodes.length === 0)
 	{
-		ns.print("failing because there is no possible path.");
+		ns.print("Error: Failing because there is no possible path.");
 		return -1;
 	}
 	
@@ -56,6 +56,6 @@ function traverse(ns, origin, target, cur_path=[])
 		}
 	}
 
-	ns.print("failing because current tree failed.");
+	ns.print("ERROR: Failing because current tree failed.");
 	return -1;
 }

@@ -56,7 +56,7 @@ function getHackableServers(ns, maxPorts)
 			continue;
 		}
 
-		valid.push({Name: server, Ports: serverPorts, Root: serverRoot, MaxRam: serverRamMax, RamUsed: serverRamUsed});
+		valid.push({Name: server, Ports: serverPorts, Root: serverRoot});
 	}
 
 	return valid;
