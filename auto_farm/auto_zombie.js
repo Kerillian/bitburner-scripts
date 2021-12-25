@@ -14,9 +14,9 @@ function getAvailableExploits(ns)
 function shouldSendWalker(ns)
 {
 	const maxPorts = getAvailableExploits(ns);
-	const visited = ["home"];
+	const visited = ['home'];
 	const myLevel = ns.getHackingLevel();
-	let servers = ns.scan("home");
+	let servers = ns.scan('home');
 	
 	while (servers.length > 0)
 	{

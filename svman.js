@@ -17,7 +17,7 @@ export async function main(ns)
 		"delete": rmServer
 	};
 
-    const func = subs[ns.args[0] || "list"];
+	const func = subs[ns.args[0] || "list"];
 
 	if (func)
 	{

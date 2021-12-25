@@ -11,7 +11,7 @@ function getAvailableExploits(ns)
 
 	const available = [];
 
-	for (let exploit of all)
+	for (const exploit of all)
 	{
 		if (ns.fileExists(exploit.Name, "home"))
 		{
@@ -28,12 +28,12 @@ function getAvailableExploits(ns)
  **/
 function getHackableServers(ns, maxPorts)
 {
-	const servers = ns.scan();
+	const servers = ns.scan(ns.getHostname());
 	const myHL = ns.getHackingLevel();
 	const scriptRam = ns.getScriptRam(ns.getScriptName())
 	const valid = [];
 
-	for (let server of servers)
+	for (const server of servers)
 	{
 		const serverHL = ns.getServerRequiredHackingLevel(server);
 		const serverPorts = ns.getServerNumPortsRequired(server);
@@ -82,7 +82,7 @@ export async function main(ns) {
 			continue;
 		}
 
-		if (server.Root === true)
+		if (server.Root)
 		{
 			await spread(ns, server.Name);
 			continue;
@@ -106,7 +106,7 @@ export async function main(ns) {
 
 		if (threads > 0)
 		{
-			ns.run("zombie.js", threads);
+			ns.exec("zombie.js", me, threads);
 		}
 	}
 }
