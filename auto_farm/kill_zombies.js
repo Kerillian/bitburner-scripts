@@ -15,7 +15,7 @@ export async function main(ns) {
 		{
 			if (ns.scriptRunning("zombie.js", server))
 			{
-				ns.kill("zombie.js");
+				ns.kill("zombie.js", server);
 				await ns.scp(script, me, server);
 				ns.exec(script, server);
 			}
