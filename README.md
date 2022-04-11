@@ -1,5 +1,5 @@
 # Summery
-A collection of scripts I've made and edited for the game (bitburner)[https://github.com/danielyxie/bitburner]
+A collection of scripts I've made and edited for the game [bitburner](https://github.com/danielyxie/bitburner)
 
 # Contents
 Quick note, a lot of my scripts require klib.js to function.
