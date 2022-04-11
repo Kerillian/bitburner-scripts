@@ -17,7 +17,7 @@ export async function main(ns)
 		"delete": rmServer
 	};
 
-	const func = subs[ns.args[0] || "list"];
+    const func = subs[ns.args[0] || "list"];
 
 	if (func)
 	{
@@ -118,4 +118,14 @@ async function rmServer(ns, args)
 	{
 		ns.tprintf(ns.deleteServer(name) ? `Deleted "${name}".` : `Something went wrong when trying to delete "${name}".`);
 	}
+}
+
+export function autocomplete(data, args)
+{
+	if (args.length > 0 && args[0] == "delete")
+	{
+		return data.servers;
+	}
+
+	return ["list", "prices", "buy", "delete"];
 }

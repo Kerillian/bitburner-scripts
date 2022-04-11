@@ -59,3 +59,8 @@ function traverse(ns, origin, target, cur_path=[])
 	ns.print("failing because current tree failed.");
 	return -1;
 }
+
+export function autocomplete(data, args)
+{
+	return [...data.servers];
+}

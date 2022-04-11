@@ -34,3 +34,8 @@ export async function main(ns) {
 	await ns.scp(script, ns.getHostname(), host);
 	ns.exec(script, host, threads, ...script_args);
 }
+
+export function autocomplete(data, args)
+{
+	return [...data.servers, ...data.scripts];
+}

@@ -1,0 +1,2 @@
+# Archive
+This contains old, possibly broken, and badly designed scripts. Quick note: I used to think that functions could only be ran on adjacent nodes, so a lot of my old design was based off that incorrect assumption.
